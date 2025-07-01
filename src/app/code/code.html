@@ -1,0 +1,36 @@
+<div class="">
+  <div class="row col-12">
+    <div class="col-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Language</mat-label>
+        <mat-select [(ngModel)]="onChangeDropdownValue">
+          <mat-option value="html">HTML</mat-option>
+          <mat-option value="css">CSS</mat-option>
+          <mat-option value="javascript">JavaScript</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="previewPage">Preview</mat-checkbox>
+    </div>
+  </div>
+  <div class=" ml-1 mr-1 row ">
+    <div [class]="previewPage ? 'col-6' :'col-12'" style="height: 500px;">
+      @if (onChangeDropdownValue=='html') {
+      <ngx-monaco-editor [options]="HTMLeditorOptions" [(ngModel)]="htmlCode"></ngx-monaco-editor>
+      }
+      @if (onChangeDropdownValue=='css') {
+      <ngx-monaco-editor [options]="csseditorOptions" [(ngModel)]="cssCode"></ngx-monaco-editor>
+      }
+      @if(onChangeDropdownValue=='javascript')
+      {
+      <ngx-monaco-editor [options]="jsEditorOptions" [(ngModel)]="jsCode"></ngx-monaco-editor>
+      }
+
+    </div>
+   @if (previewPage)
+   {
+     <div class="col-6" style="height: 500px;" #preview>
+      {{previewHTML()}}
+    </div>
+   }
+  </div>
+</div>

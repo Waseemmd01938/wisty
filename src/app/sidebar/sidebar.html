@@ -1,0 +1,21 @@
+<div class="sidebar-header" style="z-index: 1000!important;">
+  <div class="logo" [ngClass]="{'hide': !isSidebarOpen}">
+  {{ title }}
+</div>
+<div class="sidebar-toggle">
+  <mat-slide-toggle [checked]="isSidebarOpen" (change)="toggle()"></mat-slide-toggle>
+</div>
+</div>
+<div class="row sidebar-content" >
+    <div class="sidebar-content-items mb-1" *ngFor="let item of menuItems" (click)="navigateTo(item.url)" [class.active]="item.url === currentPath" [title]="!isSidebarOpen ? item.name : ''">
+      <a >
+        <i class="{{item.icon}}" ></i>
+      <span>{{item.name}}</span>
+      </a>
+    </div>
+  </div>
+  <div class="sidebar-footer" [ngClass]="{'hide': !isSidebarOpen}">
+    <div class="footer-text">
+      <span>© 2025 Wisty</span>
+    </div>
+</div>
