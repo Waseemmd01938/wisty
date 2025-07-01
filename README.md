@@ -1,7 +1,8 @@
 # Wisty
   ## Wisky components 
-    Home
-    code
+  Home
+  #code
+    IN component we are implemented the code-edtor based on monanco-code Editor.
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
 
 ## Development server
