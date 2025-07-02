@@ -28,7 +28,7 @@ toggle() {
 navigateTo(url: string): void {
   // Implement the logic to navigate to a specific URL
   // For example, you can use the Angular Router to navigate to a different route
-  this.router.navigate([url])
+  this.router.navigate([url],{'skipLocationChange':true})
 }
 get currentPath():string {
   let path:string[] = this.router.url.split('/');

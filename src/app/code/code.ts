@@ -8,7 +8,6 @@ import {
   DoCheck
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {
@@ -18,6 +17,9 @@ import {
   MONACO_PATH,
 } from '@materia-ui/ngx-monaco-editor';
 import { DarkModeService } from '../dark-mode-service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-code',
   standalone: true,
@@ -27,8 +29,9 @@ import { DarkModeService } from '../dark-mode-service';
     MonacoEditorModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatCheckboxModule,
-    MatFormFieldModule
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule
   ],
   providers: [
     {
@@ -46,6 +49,8 @@ import { DarkModeService } from '../dark-mode-service';
 export class Code implements AfterViewInit,DoCheck {
   constructor(private rerender: Renderer2,private DarkModeServices:DarkModeService) {
   }
+  modeSelection:string='website';
+  codeEditorDropdown:string='';
   readonly monacoComponent = viewChild.required(MonacoEditorComponent);
   readonly previewElement = viewChild.required<ElementRef>('preview');
   onChangeDropdownValue: string = 'html';
@@ -72,6 +77,9 @@ export class Code implements AfterViewInit,DoCheck {
     theme: 'vs', // vs, vs, hc-black
     automaticLayout: true,
   };
+  editorOptionsForCodeEditor:MonacoEditorConstructionOptions={
+    automaticLayout:true
+  }
 
   ngAfterViewInit(): void {}
   ngDoCheck(): void {
@@ -81,36 +89,47 @@ export class Code implements AfterViewInit,DoCheck {
       this.HTMLeditorOptions={...this.HTMLeditorOptions,theme:'vs-dark'}
       this.csseditorOptions={...this.csseditorOptions,theme:'vs-dark'}
       this.jsEditorOptions={...this.jsEditorOptions,theme:'vs-dark'}
+      this.editorOptionsForCodeEditor={...this.editorOptionsForCodeEditor,theme:'vs-dark'}
     }
     else{
       this.HTMLeditorOptions={...this.HTMLeditorOptions,theme:'vs'}
       this.csseditorOptions={...this.csseditorOptions,theme:'vs'}
       this.jsEditorOptions={...this.jsEditorOptions,theme:'vs'}
+      this.editorOptionsForCodeEditor={...this.editorOptionsForCodeEditor,theme:'vs'}
     }
     }
     catch(error){
       console.log(error)
+    }
+    if (['javascript','typescript','python'].includes(this.codeEditorDropdown) && this.modeSelection=='code')
+    {
+      this.editorOptionsForCodeEditor={...this.editorOptionsForCodeEditor,language:this.codeEditorDropdown}
     }
   }
   previewHTML() {
 
     try {
       const iframe = document.createElement('iframe');
-      iframe.style.width = 'auto';
-      iframe.style.height = 'auto';
-
+      iframe.classList.add('row')
+      iframe.classList.add('col-12')
+      iframe.classList.add('h-100')
+      // iframe.classList.add('website-preview')
       // Clear previous preview
       const previewElement = this.previewElement();
       previewElement.nativeElement.innerHTML = '';
       previewElement.nativeElement.appendChild(iframe);
-
+      let GlbalStyle=`
+      *{
+      background-color: white;
+      }
+      `
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
       if (doc) {
         doc.open();
         doc.write(`
         <html>
           <head>
-            <style>${this.cssCode}</style>
+            <style>${GlbalStyle+this.cssCode}</style>
           </head>
           <body>
             ${this.htmlCode}

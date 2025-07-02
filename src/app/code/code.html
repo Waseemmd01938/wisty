@@ -1,6 +1,16 @@
-<div class="">
-  <div class="row col-12">
-    <div class="col-4">
+<div class="row mb-3 ml-2">
+  <mat-button-toggle-group [(ngModel)]="modeSelection" name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle value="website">Web Edtior</mat-button-toggle>
+  <mat-button-toggle value="code">Code Editor</mat-button-toggle>
+  <!-- <mat-button-toggle value="underline">Underline</mat-button-toggle> -->
+</mat-button-toggle-group>
+
+</div>
+@if (modeSelection == 'website') {
+  <!-- <mat-card>
+<mat-card-header> -->
+    <div class="row col-12" >
+    <div class="col-2">
       <mat-form-field appearance="fill">
         <mat-label>Select Language</mat-label>
         <mat-select [(ngModel)]="onChangeDropdownValue">
@@ -9,9 +19,15 @@
           <mat-option value="javascript">JavaScript</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-checkbox [(ngModel)]="previewPage">Preview</mat-checkbox>
     </div>
+     <div class="col-2 mt-2">
+         <button [matButton]="previewPage ? 'filled':''" (click)="previewPage = !previewPage">Preview</button>
+          <!-- <mat-checkbox [(ngModel)]="previewPage">Preview</mat-checkbox> -->
+      </div>
   </div>
+<!-- </mat-card-header>
+
+<mat-card-content> -->
   <div class=" ml-1 mr-1 row ">
     <div [class]="previewPage ? 'col-6' :'col-12'" style="height: 500px;">
       @if (onChangeDropdownValue=='html') {
@@ -28,9 +44,48 @@
     </div>
    @if (previewPage)
    {
-     <div class="col-6" style="height: 500px;" #preview>
+     <div class="col-6" #preview>
       {{previewHTML()}}
     </div>
    }
   </div>
-</div>
+  <!-- </mat-card-content>
+</mat-card> -->
+}
+@if (modeSelection=='code') {
+    <!-- <mat-card>
+<mat-card-header> -->
+    <div class="row col-12" >
+    <div class="col-2">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Language</mat-label>
+        <mat-select [(ngModel)]="codeEditorDropdown">
+          <mat-option value="javascript">JavaScript</mat-option>
+          <mat-option value="typescript">TypeScript</mat-option>
+          <mat-option value="python">Python</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+     <!-- <div class="col-2 mt-2">
+         <button [matButton]="previewPage ? 'filled':''" (click)="previewPage = !previewPage">View Terminal</button>
+
+      </div> -->
+  </div>
+<!-- </mat-card-header>
+
+<mat-card-content> -->
+  <div class=" ml-1 mr-1 row ">
+    <div [class]="'col-12'" style="height: 500px;">
+      <ngx-monaco-editor [options]="editorOptionsForCodeEditor"></ngx-monaco-editor>
+
+    </div>
+   <!-- @if (previewPage)
+   {
+     <div class="col-6" style="height: 500px;" #preview>
+      {{previewHTML()}}
+    </div>
+   } -->
+  </div>
+  <!-- </mat-card-content>
+</mat-card> -->
+}
