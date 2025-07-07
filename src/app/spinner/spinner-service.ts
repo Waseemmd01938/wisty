@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,21 +6,21 @@ import { Injectable } from '@angular/core';
 export class SpinnerService {
 
   constructor() { }
-  private showSpinner: boolean = false;
+  private showSpinner = signal(false);
   get isSpinnerVisible(): boolean {
-    return this.showSpinner;
+    return this.showSpinner();
   }
   show():void
   {
     console.log("SpinnerService: show");
-    this.showSpinner = true;
+    this.showSpinner.set(true);
   }
 
   hide():void
   {
     console.log("SpinnerService: hide");
      // Simulate a delay for demonstration purposes
-    this.showSpinner = false;
+    this.showSpinner.set(false);
   }
 
 }

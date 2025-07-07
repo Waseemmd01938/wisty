@@ -1,5 +1,5 @@
 <div class="row mb-3 ml-2">
-  <mat-button-toggle-group [(ngModel)]="modeSelection" name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle-group [(ngModel)]="modeSelection" name="fontStyle" aria-label="Font Style" >
   <mat-button-toggle value="website">Web Edtior</mat-button-toggle>
   <mat-button-toggle value="code">Code Editor</mat-button-toggle>
   <!-- <mat-button-toggle value="underline">Underline</mat-button-toggle> -->
@@ -55,36 +55,40 @@
 @if (modeSelection=='code') {
     <!-- <mat-card>
 <mat-card-header> -->
-    <div class="row col-12" >
-    <div class="col-2">
+    <div class="row" >
+    <div class="col-md-2">
       <mat-form-field appearance="fill">
         <mat-label>Select Language</mat-label>
-        <mat-select [(ngModel)]="codeEditorDropdown">
+        <mat-select [(ngModel)]="codeEditorDropdown" (valueChange)="codeEditorValue=''">
           <mat-option value="javascript">JavaScript</mat-option>
           <mat-option value="typescript">TypeScript</mat-option>
           <mat-option value="python">Python</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-     <!-- <div class="col-2 mt-2">
-         <button [matButton]="previewPage ? 'filled':''" (click)="previewPage = !previewPage">View Terminal</button>
+     <div class="col-md-2 mt-2">
+         <button matButton (click)="runCode()">Run Code</button>
 
-      </div> -->
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+      <div class=" pl-5 col-md-2 mt-1">
+         <button matButton (click)="clearTerminal()">Clear Terminal</button>
+
+      </div>
   </div>
 <!-- </mat-card-header>
 
 <mat-card-content> -->
   <div class=" ml-1 mr-1 row ">
-    <div [class]="'col-12'" style="height: 500px;">
-      <ngx-monaco-editor [options]="editorOptionsForCodeEditor"></ngx-monaco-editor>
+    <div [class]="'col-6'" style="height: 500px;">
+      <ngx-monaco-editor [options]="editorOptionsForCodeEditor" [(ngModel)]="codeEditorValue"></ngx-monaco-editor>
 
     </div>
-   <!-- @if (previewPage)
-   {
-     <div class="col-6" style="height: 500px;" #preview>
-      {{previewHTML()}}
+
+     <div class="col-6" style="height: 500px;background-color:black;color:white;" #terminal>
     </div>
-   } -->
   </div>
   <!-- </mat-card-content>
 </mat-card> -->

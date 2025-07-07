@@ -29,6 +29,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@materia-ui/ngx-monaco-editor": "^6.0.0",
+    "@xterm/xterm": "^5.5.0",
     "bootstrap-icons": "^1.13.1",
     "monaco-editor": "^0.36.1",
     "rxjs": "~7.8.0",
