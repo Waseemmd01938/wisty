@@ -3,7 +3,6 @@
 
 Wisty is a versatile platform designed to provide a seamless development experience right in your browser. Whether you're a beginner taking your first steps into coding or an experienced developer, Wisty offers a convenient environment to write, edit, and experiment with various programming languages and web technologies.
 
-#url
 [Wisky url](https://waseemmohammed0198.pythonanywhere.com/)
 
 
