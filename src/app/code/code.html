@@ -10,7 +10,7 @@
   <!-- <mat-card>
 <mat-card-header> -->
     <div class="row col-12" >
-    <div class="col-2">
+    <div class="col-10">
       <mat-form-field appearance="fill">
         <mat-label>Select Language</mat-label>
         <mat-select [(ngModel)]="onChangeDropdownValue">
@@ -20,7 +20,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-     <div class="col-2 mt-2">
+     <div class="row justify-content-end col-2 mt-2 ml-1">
          <button [matButton]="previewPage ? 'filled':''" (click)="previewPage = !previewPage">Preview</button>
           <!-- <mat-checkbox [(ngModel)]="previewPage">Preview</mat-checkbox> -->
       </div>
@@ -29,7 +29,7 @@
 
 <mat-card-content> -->
   <div class=" ml-1 mr-1 row ">
-    <div [class]="previewPage ? 'col-6' :'col-12'" style="height: 500px;">
+    <div [class]="previewPage ? 'col-md-6 col-sm-12' :'col-md-12 col-sm-12'" style="height: 500px;">
       @if (onChangeDropdownValue=='html') {
       <ngx-monaco-editor [options]="HTMLeditorOptions" [(ngModel)]="htmlCode"></ngx-monaco-editor>
       }
@@ -44,7 +44,7 @@
     </div>
    @if (previewPage)
    {
-     <div class="col-6" #preview>
+     <div class="col-md-6 col-sm-12" #preview>
       {{previewHTML()}}
     </div>
    }
@@ -56,7 +56,7 @@
     <!-- <mat-card>
 <mat-card-header> -->
     <div class="row" >
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-6">
       <mat-form-field appearance="fill">
         <mat-label>Select Language</mat-label>
         <mat-select [(ngModel)]="codeEditorDropdown" (valueChange)="codeEditorValue=''">
@@ -66,14 +66,11 @@
         </mat-select>
       </mat-form-field>
     </div>
-     <div class="col-md-2 mt-2">
+     <div class="col-md-2  col-sm-6 mt-2">
          <button matButton (click)="runCode()">Run Code</button>
 
       </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2"></div>
-      <div class=" pl-5 col-md-2 mt-1">
+      <div class=" pl-5 row justify-content-end  col-md-8 mt-1">
          <button matButton (click)="clearTerminal()">Clear Terminal</button>
 
       </div>
@@ -82,12 +79,12 @@
 
 <mat-card-content> -->
   <div class=" ml-1 mr-1 row ">
-    <div [class]="'col-6'" style="height: 500px;">
+    <div class="col-md-6 col-sm-12" style="height: 500px;">
       <ngx-monaco-editor [options]="editorOptionsForCodeEditor" [(ngModel)]="codeEditorValue"></ngx-monaco-editor>
 
     </div>
 
-     <div class="col-6" style="height: 500px;background-color:black;color:white;" #terminal>
+     <div class="col-md-6 col-sm-12" style="height: 500px;background-color:black;color:white;overflow-y: auto;" #terminal>
     </div>
   </div>
   <!-- </mat-card-content>

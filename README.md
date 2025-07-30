@@ -1,65 +1,35 @@
+---
 # Wisty
-  ## Wisky components 
-      Home
-      code
-In Code component we are implemented the code-edtor based on monanco-code Editor.
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
 
-## Development server
+Wisty is a versatile platform designed to provide a seamless development experience right in your browser. Whether you're a beginner taking your first steps into coding or an experienced developer, Wisty offers a convenient environment to write, edit, and experiment with various programming languages and web technologies.
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+**Home Component:**
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Welcome to Wisty:** A friendly introduction that greets users and provides an overview of the platform's capabilities.
 
-## Code scaffolding
+**Code Component:**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* **Code Editor:** A robust code editor supporting multiple popular programming languages:
+    * **Python:** Ideal for scripting, data analysis, web development, and more.
+    * **TypeScript:** A superset of JavaScript that adds static typing, enhancing code quality and maintainability.
+    * **JavaScript:** The foundational language for web development, enabling interactive and dynamic web pages.
+* **Web Editor:** Develop and test your web projects directly with real-time feedback. This editor is perfect for crafting HTML, CSS, and JavaScript for your front-end creations.
 
-```bash
-ng generate component component-name
-```
+## Getting Started
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Wisty is a web-based application, so there's no installation required. Simply open your web browser and navigate to the Wisty application.
 
-```bash
-ng generate --help
-```
+## How to Use
 
-## Building
+1.  **Home Page:** Upon launching Wisty, you'll be welcomed to the **Home** page. This is your starting point to explore the platform.
+2.  **Accessing Editors:** Click on the **Code** navigation link to access the various programming and web editors.
+3.  **Selecting a Language/Editor:** Within the **Code** component, you can choose your desired programming language (Python, TypeScript, JavaScript) or the Web Editor to start coding.
+4.  **Writing and Running Code:** Write your code in the editor. Depending on the editor, you'll find options to run your code or see real-time previews for web projects.
 
-To build the project run:
+## Technologies Used
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
+* **Angular**
+* **Ngx Monaco Editor**
+* **Monaco Editor**

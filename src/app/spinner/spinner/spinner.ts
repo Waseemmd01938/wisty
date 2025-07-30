@@ -1,10 +1,11 @@
 import { Component,Renderer2 } from '@angular/core';
 import { SpinnerService } from '../spinner-service';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-spinner',
-  imports: [MatProgressSpinner],
+  imports: [MatProgressBarModule],
   templateUrl: './spinner.html',
   styleUrl: './spinner.scss'
 })

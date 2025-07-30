@@ -20,6 +20,7 @@ export class App {
   protected title = 'Wisty';
 
   constructor(private spinnerService: SpinnerService,private DarkModeServices:DarkModeService) {
+    
 
   }
   showSpinner(): void {

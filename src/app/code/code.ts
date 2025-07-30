@@ -192,7 +192,6 @@ this.spinner.show()
 this.http.post(`${this.baseUrl}/execute`,requestBody).subscribe((res:any)=>{
   console.log(res)
   let child=document.createElement('div')
-  // child.classList.add('')
   let output= res?.run?.output
   let error=res?.run?.stderr
   let errorchild=`
