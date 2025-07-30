@@ -19,7 +19,20 @@ Wisty is a versatile platform designed to provide a seamless development experie
 
 ## Getting Started
 
-Wisty is a web-based application, so there's no installation required. Simply open your web browser and navigate to the Wisty application.
+
+```bash
+  git clone https://github.com/Waseemmd01938/wisty
+  cd wisty
+```
+
+## Installation
+
+Install Wisty with npm
+
+```bash
+  npm install
+```
+
 
 ## How to Use
 
