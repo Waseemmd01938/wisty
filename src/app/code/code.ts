@@ -56,9 +56,9 @@ export class Code implements AfterViewInit, DoCheck, OnInit {
   codeEditorValue:string='';
   modeSelection: string = 'website';
   codeEditorDropdown: string = '';
-  baseUrl="https://emkc.org/api/v2/piston"
+  baseUrl="http://127.0.0.1:5000/wisty"
 
-  runtimeResponseList:any[]=[]
+  // runtimeResponseList:any[]=[]
   readonly monacoComponent = viewChild.required(MonacoEditorComponent);
   readonly previewElement = viewChild.required<ElementRef>('preview');
   @ViewChild('terminal', { static: false }) terminalView!: ElementRef;
@@ -93,12 +93,12 @@ export class Code implements AfterViewInit, DoCheck, OnInit {
   constructor(private rerender: Renderer2, private DarkModeServices: DarkModeService,private http:HttpClient,private spinner:SpinnerService) {
   }
   ngOnInit(): void {
-    let executedRuntime=this.http.get(this.baseUrl+'/runtimes')
-    this.spinner.show()
-    executedRuntime.subscribe((res:any)=>{
-      this.runtimeResponseList=res
-      this.spinner.hide()
-    })
+    // let executedRuntime=this.http.get(this.baseUrl+'/runtimes')
+    // this.spinner.show()
+    // executedRuntime.subscribe((res:any)=>{
+    //   this.runtimeResponseList=res
+    //   this.spinner.hide()
+    // })
 
     // this.terminal = new Terminal(
     //   {
@@ -175,31 +175,32 @@ export class Code implements AfterViewInit, DoCheck, OnInit {
 runCode() {
   let codeValue=this.codeEditorValue
   let version=''
-  for(let code of this.runtimeResponseList)
-  {
-    if (code.language ==this.codeEditorDropdown) version=code.version
-  }
+  // for(let code of this.runtimeResponseList)
+  // {
+  //   if (code.language ==this.codeEditorDropdown) version=code.version
+  // }
   let requestBody={
   "language": this.codeEditorDropdown,
-  "version": version,
-  "files": [
-    {
-      "content": codeValue
-    }
-  ],
+  "code":codeValue
+  // "version": version,
+  // "files": [
+  //   {
+  //     "content": codeValue
+  //   }
+  // ],
 }
 this.spinner.show()
 this.http.post(`${this.baseUrl}/execute`,requestBody).subscribe((res:any)=>{
   console.log(res)
   let child=document.createElement('div')
-  let output= res?.run?.output
-  let error=res?.run?.stderr
+  let output= res?.output
+  let error=res?.error || res?.message
   let errorchild=`
   <div style="color:red">
   ${error}
   </div>
   `
-  child.innerHTML=(output !==error) ?`
+  child.innerHTML=(res?.status =="success") ?`
  <div class="mb-2 mt-2">
   Executed in ${this.codeEditorDropdown} ....
   </div>
